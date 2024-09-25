@@ -1,0 +1,19 @@
+.container {
+}
+
+.label {
+  color: var(--dark-grayish-cyan);
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+}
+
+.input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  position: relative;
+  direction: ltr;
+  text-align: right;
+}
