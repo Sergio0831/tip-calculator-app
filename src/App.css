@@ -1,7 +1,15 @@
 #root {
   display: grid;
   justify-items: center;
+  padding-top: 3.25rem;
   width: 100%;
   row-gap: clamp(2.5rem, 6vw, 5.5rem);
-  padding-top: clamp(3.125rem, 6vw, 5.5rem);
+}
+
+@media (min-width: 48rem) {
+  #root {
+    padding-top: 0;
+    align-content: center;
+    height: 100dvh;
+  }
 }
