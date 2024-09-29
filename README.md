@@ -2,7 +2,7 @@
 
 This is a solution to the
 [Tip calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX).
-Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+Frontend Mentor challenges help me improve my coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your
 project, right-click the page and select "Take a Screenshot". You can choose either a full-height

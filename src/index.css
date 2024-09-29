@@ -25,4 +25,15 @@
   body {
     @apply bg-[var(--light-grayish-cyan)] font-bold min-h-dvh grid md:block;
   }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+    direction: rtl;
+  }
+
+  .calculator {
+    width: min(57.2rem, 100%);
+    box-shadow: 0 2rem 2.75rem 0 rgba(79, 166, 175, 0.2);
+  }
 }

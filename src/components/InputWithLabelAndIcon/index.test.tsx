@@ -9,6 +9,7 @@ const renderInputWithLabelAndIcon = () =>
       label="Name"
       placeholder="Enter you name"
       type="text"
+      value=""
       icon={<User />}
     />,
   );
