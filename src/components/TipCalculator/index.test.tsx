@@ -1,12 +1,9 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import TipCalculator from '.';
+import { render, screen, setup } from '../../../vitest.setup';
 
 const renderTipCalculator = () => render(<TipCalculator />);
 
 describe('TipCalculator', () => {
-  const user = userEvent.setup();
-
   test('should initialize state variables to default values', () => {
     renderTipCalculator();
 
@@ -22,7 +19,7 @@ describe('TipCalculator', () => {
   });
 
   test('should calculate tip amount correctly', async () => {
-    renderTipCalculator();
+    const { user } = setup(<TipCalculator />);
 
     const billInput = screen.getByLabelText('Bill');
     const peopleInput = screen.getByLabelText('Number of People');
@@ -36,7 +33,7 @@ describe('TipCalculator', () => {
   });
 
   test('should calculate total amount correctly', async () => {
-    renderTipCalculator();
+    const { user } = setup(<TipCalculator />);
 
     const billInput = screen.getByLabelText('Bill');
     const peopleInput = screen.getByLabelText('Number of People');
@@ -50,7 +47,7 @@ describe('TipCalculator', () => {
   });
 
   test('should calculate tip amount and total amount correctly when custom tip is entered', async () => {
-    renderTipCalculator();
+    const { user } = setup(<TipCalculator />);
 
     const billInput = screen.getByLabelText('Bill');
     const peopleInput = screen.getByLabelText('Number of People');
@@ -62,5 +59,34 @@ describe('TipCalculator', () => {
 
     expect(screen.getByText('$1.80')).toBeInTheDocument();
     expect(screen.getByText('$61.80')).toBeInTheDocument();
+  });
+
+  test('should display error message when people input is zero', async () => {
+    const { user } = setup(<TipCalculator />);
+
+    const peopleInput = screen.getByLabelText('Number of People');
+    await user.type(peopleInput, '0');
+    expect(screen.getByText("Can't be zero")).toBeInTheDocument();
+  });
+
+  test('should clear all inputs and states when reset button is clicked', async () => {
+    const { user } = setup(<TipCalculator />);
+
+    const billInput = screen.getByLabelText('Bill');
+    const peopleInput = screen.getByLabelText('Number of People');
+    const tipButton = screen.getByRole('button', { name: '15%' });
+
+    await user.type(billInput, '420');
+    await user.type(peopleInput, '4');
+    await user.click(tipButton);
+
+    const resetButton = screen.getByRole('button', { name: /reset/i });
+    await user.click(resetButton);
+
+    expect(billInput).toHaveValue(null);
+    expect(tipButton).toHaveAttribute('aria-pressed', 'false');
+    expect(peopleInput).toHaveValue(null);
+    expect(screen.queryByText("Can't be zero")).toBeNull();
+    expect(resetButton).toBeDisabled();
   });
 });

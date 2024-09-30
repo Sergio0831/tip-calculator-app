@@ -85,6 +85,7 @@ const TipCalculator = () => {
               <TipButton
                 key={percentage}
                 name={`${percentage}%`}
+                aria-pressed={tipPercentage === percentage}
                 className={
                   tipPercentage === percentage ? 'bg-[#9fe8df] text-[var(--very-dark-cyan)]' : ''
                 }
@@ -96,6 +97,7 @@ const TipCalculator = () => {
               type="number"
               className="placeholder:text-[#547878] placeholder:opacity-100"
               placeholder="Custom"
+              name="custom-tip"
               value={customTip || ''}
               onChange={handleCustomTipChange}
             />
